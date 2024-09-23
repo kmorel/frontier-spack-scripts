@@ -4,7 +4,7 @@ myspack_base_dir=`realpath $myspack_base_dir`
 export SPACK_USER_CONFIG_PATH=$myspack_base_dir/spack-configs/e4s-configs/frontier
 . $myspack_base_dir/spack/share/spack/setup-env.sh
 
-myspack_config_name=vtkm
+myspack_config_name=vis
 
 # Set up the spack config file and create an environment from it.
 if spack env activate $myspack_config_name ; then

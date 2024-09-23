@@ -1,5 +1,5 @@
-This repository contains the Spack configuration required to compile VTK-m
-on Frontier as long as scripts to enable the configuration and compile the
+This repository contains the Spack configuration required to compile vis
+on Frontier as well as scripts to enable the configuration and compile the
 code. This repository also has submodules for Spack itself and the E4S
 configuration of Spack. Thus, when you check out this repository, you need
 to initialize and update the submodules.
@@ -17,7 +17,7 @@ To set up and load the Spack environment, simply source the
 . ./setup-spack.sh
 ```
 
-To compile VTK-m, run the `make-vtkm.sh` script.
+To compile, for example, VTK-m, run the `make-vtkm.sh` script.
 
 ``` bash
 make-vtkm.sh
