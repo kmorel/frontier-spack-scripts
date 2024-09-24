@@ -7,5 +7,7 @@ spack:
       require: "%gcc@11.2.0"
   config:
     connect_timeout: 100
+    build_stage:
+      - $spack/../spack-build
   include:
   - $spack/../spack-configs/e4s-configs/frontier/rocm-5.3.0
