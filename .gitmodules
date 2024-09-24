@@ -4,3 +4,6 @@
 [submodule "facility-external-spack-configs"]
 	path = spack-configs/e4s-configs
 	url = https://github.com/E4S-Project/facility-external-spack-configs.git
+[submodule "pvsc"]
+	path = pvsc
+	url = https://gitlab.kitware.com/kmorel/pvsc.git
