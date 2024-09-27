@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 pv_version=5.13.0
 
 scriptdir=$(dirname $(realpath $0))
