@@ -11,6 +11,12 @@ scriptdir=$(dirname $(realpath $0))
 spack concretize -f
 spack install --add --keep-stage paraview @$pv_version+raytracing+python+mpi+adios2+visitbridge+rocm amdgpu_target=gfx90a
 
+# ParaView indirectly depends on lua, and this overrides the lua
+# that srun uses. srun needs the luaposix library, so load that,
+# too. This is done easiest with lua's own package manager, luarocks.
+spack load paraview
+luarocks install luaposix
+
 # Make a custom server configuration that points to this build.
 
 # This works best if this build directory has the date in it.
