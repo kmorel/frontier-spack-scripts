@@ -13,5 +13,4 @@ spack:
     build_stage:
       - $spack/../spack-build
   include:
-    - $spack/../spack-configs/rocm-6.2.0
-    # - $spack/../spack-configs/e4s-configs/frontier/rocm-5.3.0
+    - $spack/../spack-configs/e4s-configs/frontier/rocm-6.2.0
