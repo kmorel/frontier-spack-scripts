@@ -3,7 +3,7 @@
 	url = https://github.com/spack/spack
 [submodule "facility-external-spack-configs"]
 	path = spack-configs/e4s-configs
-	url = https://github.com/E4S-Project/facility-external-spack-configs.git
+	url = https://github.com/kmorel/facility-external-spack-configs.git
 [submodule "pvsc"]
 	path = pvsc
 	url = https://gitlab.kitware.com/kmorel/pvsc.git
