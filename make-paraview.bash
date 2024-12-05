@@ -2,7 +2,7 @@
 
 set -e
 
-pv_version=5.13.0
+pv_version=master
 
 scriptdir=$(dirname $(realpath $0))
 
