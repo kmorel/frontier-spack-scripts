@@ -17,12 +17,8 @@ spack install --add --keep-stage \
 # ParaView indirectly depends on lua, and this overrides the lua
 # that srun uses. srun needs the luaposix library, so load that,
 # too. This is done easiest with lua's own package manager, luarocks.
-# EDIT: The lua command no longer seems to be loaded with ParaView.
-# Perhaps this has been fixed. Consequently, disable this.
-if false ; then
 spack load paraview
 luarocks install luaposix
-fi
 
 # Make a custom server configuration that points to this build.
 
