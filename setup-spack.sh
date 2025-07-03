@@ -13,6 +13,8 @@ unset myscript
 export SPACK_USER_CONFIG_PATH=$myspack_base_dir/spack-configs/e4s-configs/frontier
 . $myspack_base_dir/spack/share/spack/setup-env.sh
 
+spack repo set --destination $myspack_base_dir/spack-packages builtin
+
 myspack_config_name=vis
 
 # This is necessary to prevent Python errors when loading packages containing
