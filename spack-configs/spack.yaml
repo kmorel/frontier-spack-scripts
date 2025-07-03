@@ -7,7 +7,7 @@ spack:
     all:
       # Use a specific version of GCC
       # require: "%gcc@11.2.0"
-       require: "%gcc@13.2.1"
+      # require: "%gcc@13.2.1"
   config:
     connect_timeout: 100
     build_stage:
