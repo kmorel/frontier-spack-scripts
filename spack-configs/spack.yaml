@@ -3,8 +3,8 @@ spack:
     reuse: true
     unify: true
   view: false
-  packages:
-    all:
+  #packages:
+    #all:
       # Use a specific version of GCC
       # require: "%gcc@11.2.0"
       # require: "%gcc@13.2.1"
@@ -14,3 +14,4 @@ spack:
       - $spack/../spack-build
   include:
     - $spack/../spack-configs/e4s-configs/frontier/rocm-6.2.4
+    - $spack/../spack-configs/e4s-configs/frontier/cray-python/3.11.7
