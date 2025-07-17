@@ -3,11 +3,18 @@ spack:
     reuse: true
     unify: true
   view: false
-  #packages:
+  packages:
     #all:
       # Use a specific version of GCC
       # require: "%gcc@11.2.0"
       # require: "%gcc@13.2.1"
+    # Automake 1.15 installed on Frontier interferes with automake builds.
+    automake:
+      version: [1.16]
+      buildable: true
+    all:
+      providers:
+        automake: [automake@1.16]
   config:
     connect_timeout: 100
     build_stage:

@@ -9,10 +9,13 @@ scriptdir=$(dirname $(realpath $0))
 . $scriptdir/setup-spack.sh
 
 spack concretize -f
+# Need to specifically add automake 1.16 to prevent errors from the automat 1.15
+# installed on frontier.
+spack install --add automake@1.16
 spack install --add --keep-stage \
   paraview@$pv_version+raytracing+python+mpi+adios2+fides+visitbridge+rocm amdgpu_target=gfx90a \
   ^mgard+rocm~openmp amdgpu_target=gfx90a \
-  ^adios2+rocm+mgard amdgpu_target=gfx90a
+  ^adios2@master+rocm+mgard amdgpu_target=gfx90a
 
 # ParaView indirectly depends on lua, and this overrides the lua
 # that srun uses. srun needs the luaposix library, so load that,
