@@ -14,6 +14,7 @@ spack concretize -f
 spack install --add automake@1.16
 spack install --add --keep-stage \
   paraview@$pv_version+raytracing+python+mpi+adios2+fides+visitbridge+rocm amdgpu_target=gfx90a \
+  ^gcc@13.3.1 \
   ^mgard+rocm~openmp amdgpu_target=gfx90a \
   ^adios2@master+rocm+mgard amdgpu_target=gfx90a
 
