@@ -9,7 +9,7 @@ scriptdir=$(dirname $(realpath $0))
 . $scriptdir/setup-spack.sh
 
 spack concretize -f
-# Need to specifically add automake 1.16 to prevent errors from the automat 1.15
+# Need to specifically add automake 1.16 to prevent errors from the automake 1.15
 # installed on frontier.
 spack install --add automake@1.16
 spack install --add --keep-stage \
