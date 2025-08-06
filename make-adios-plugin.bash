@@ -8,7 +8,7 @@ scriptdir=$(dirname $(realpath $0))
 
 . ${scriptdir}/setup-spack.sh
 
-spack load git cmake ninja mgard adios2
+spack load cmake ninja mgard adios2
 
 plugin_dir=${scriptdir}/adios-plugin
 mkdir -p ${plugin_dir}
