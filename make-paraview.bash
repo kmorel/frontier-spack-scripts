@@ -25,7 +25,7 @@ spack install --add \
   paraview@$pv_version+raytracing+python+mpi+adios2+fides+visitbridge+rocm amdgpu_target=gfx90a \
   ^ospray~volumes \
   ^mgard+rocm~openmp amdgpu_target=gfx90a \
-  ^adios2@master+rocm+mgard amdgpu_target=gfx90a
+  ^adios2@master+rocm+mgard+campaign amdgpu_target=gfx90a
 
 # ParaView indirectly depends on lua, and this overrides the lua
 # that srun uses. srun needs the luaposix library, so load that,
