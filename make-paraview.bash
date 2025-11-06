@@ -17,14 +17,15 @@ export PATH=$PATH:$package_dir/automake-1.17/bin
 export PATH=$PATH:$package_dir/automake-1.18.1/bin
 
 spack concretize -f
-# Need to specifically add automake 1.16 to prevent errors from the automake 1.15
+# Need to specifically add autoconf to prevent errors from reconfigured stuff
 # installed on frontier.
-# spack install --add automake@1.16
+spack install --add autoconf
+spack load autoconf
 # spack install --add --keep-stage \
 spack install --add \
   paraview@$pv_version+raytracing+python+mpi+adios2+fides+visitbridge+rocm amdgpu_target=gfx90a \
   ^ospray~volumes \
-  ^mgard+rocm~openmp amdgpu_target=gfx90a \
+  ^mgard@git.master+rocm~openmp amdgpu_target=gfx90a \
   ^adios2@master+rocm+mgard+campaign amdgpu_target=gfx90a
 
 # ParaView indirectly depends on lua, and this overrides the lua
