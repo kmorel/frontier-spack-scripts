@@ -13,7 +13,9 @@ unset myscript
 export SPACK_USER_CONFIG_PATH=$myspack_base_dir/spack-configs/e4s-configs/frontier
 . $myspack_base_dir/spack/share/spack/setup-env.sh
 
-spack repo set --destination $myspack_base_dir/spack-packages builtin
+if [ \! -e ${SPACK_USER_CONFIG_PATH}/repos.yaml ] ; then
+  spack repo set --destination $myspack_base_dir/spack-packages builtin
+fi
 
 myspack_config_name=vis
 
