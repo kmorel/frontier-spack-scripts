@@ -40,7 +40,16 @@ luarocks install luaposix
 build_name=frontier-$(basename $scriptdir)-$pv_version
 pvsc_file=$scriptdir/$build_name.pvsc
 
+# Create standard pvsc file to connect to this build.
 cp -f $scriptdir/pvsc/ORNL/ORNL-frontier.pvsc $pvsc_file
-
 sed -i "s/ORNL frontier/$build_name/" $pvsc_file
 sed -i "s|/sw/frontier/paraview/pvsc|$scriptdir/pvsc|" $pvsc_file
+
+# GE's security does not allow DNS lookup to the frontier hostname from their
+# internal network on a Linux machine. Instead, they have to connect directly to
+# an IP. Weirdly, the IP address they connect to is different from other
+# networks. (They must be going through a proxy.)
+pvsc_file_ge=${scriptdir}/${build_name}-ge-linux.pvsc
+cp -f ${pvsc_file} ${pvsc_file_ge}
+sed -i "s/${build_name}/${build_name}-ge-linux/" ${pvsc_file_ge}
+sed -i "s/frontier.olcf.ornl.gov/10.75.33.123/" ${pvsc_file_ge}
