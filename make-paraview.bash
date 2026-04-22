@@ -2,7 +2,7 @@
 
 set -e
 
-pv_version=6.0.0
+pv_version=6.1.0
 
 scriptdir=$(dirname $(realpath $0))
 
@@ -23,16 +23,18 @@ spack install --add autoconf
 spack load autoconf
 # spack install --add --keep-stage \
 spack install --add \
-  paraview@$pv_version+raytracing+python+mpi+adios2+fides+visitbridge+rocm amdgpu_target=gfx90a \
+  paraview@$pv_version+raytracing~x~qt+python+mpi+adios2+fides+visitbridge+rocm amdgpu_target=gfx90a \
   ^ospray~volumes \
+  ^hwloc~gl \
+  ^viskores~openmp \
   ^mgard@git.master+rocm~openmp amdgpu_target=gfx90a \
   ^adios2@master+rocm+mgard+campaign amdgpu_target=gfx90a
 
 # ParaView indirectly depends on lua, and this overrides the lua
 # that srun uses. srun needs the luaposix library, so load that,
 # too. This is done easiest with lua's own package manager, luarocks.
-spack load lua
-luarocks install luaposix
+# spack load lua
+# luarocks install luaposix
 
 # Make a custom server configuration that points to this build.
 
