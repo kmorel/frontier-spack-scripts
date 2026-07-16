@@ -70,8 +70,8 @@ spack add \
   ^ospray~volumes \
   ^hwloc~gl \
   ^viskores~openmp \
-  ^mgard@git.master+rocm~openmp amdgpu_target=gfx90a \
-  ^adios2@master+rocm+mgard+campaign+sodium amdgpu_target=gfx90a
+  ^mgard@git.master=develop+rocm~openmp amdgpu_target=gfx90a \
+  ^adios2@master+rocm+mgard+campaign+encryption amdgpu_target=gfx90a
 
 mirrordir=${scriptdir}/spack-mirror
 spack concretize
