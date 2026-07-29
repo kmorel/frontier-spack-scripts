@@ -12,8 +12,7 @@
 
 set -e
 
-pv_version=6.1.0
-
+pv_version=6.1.1
 use_queue=false
 
 usage() {
