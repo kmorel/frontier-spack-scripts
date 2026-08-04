@@ -58,12 +58,6 @@ export PATH=$PATH:$package_dir/automake-1.16.5/bin
 export PATH=$PATH:$package_dir/automake-1.17/bin
 export PATH=$PATH:$package_dir/automake-1.18.1/bin
 
-# Need to specifically add autoconf to prevent errors from reconfigured stuff
-# installed on frontier.
-spack add autoconf
-spack install autoconf
-spack load autoconf
-
 spack add \
   paraview@$pv_version+raytracing~x~qt+python+mpi+adios2+fides+visitbridge+rocm amdgpu_target=gfx90a \
   ^ospray~volumes \
@@ -72,11 +66,18 @@ spack add \
   ^mgard@git.master=develop+rocm~openmp amdgpu_target=gfx90a \
   ^adios2@master+rocm+mgard+campaign+encryption amdgpu_target=gfx90a
 
+spack add autoconf
+
 mirrordir=${scriptdir}/spack-mirror
 spack concretize
 if [ "$in_batch" = false ] ; then
   spack mirror create -d ${mirrordir} -a
 fi
+
+# Need to specifically add autoconf to prevent errors from reconfigured stuff
+# installed on frontier.
+spack install autoconf
+spack load autoconf
 
 if [ "$use_queue" = true ] ; then
   echo "Queuing build job"
@@ -84,7 +85,7 @@ if [ "$use_queue" = true ] ; then
   exit 0
 fi
 
-# spack mirror add local file://${mirrordir} # Should already be added.
+spack mirror add local file://${mirrordir}
 # spack install --keep-stage
 if [ "$in_batch" = true ] ; then
   echo "Running spack install on compute node."

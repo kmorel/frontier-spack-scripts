@@ -2,7 +2,7 @@ if test -n "$BASH" ; then myscript=$BASH_SOURCE
 elif test -n "$TMOUT"; then myscript=${.sh.file}
 elif test -n "$ZSH_NAME" ; then myscript=${(%):-%x}
 elif test ${0##*/} = dash; then x=$(lsof -p $$ -Fn0 | tail -1); myscript=${x#n}
-else script=$0
+else myscript=$0
 fi
 
 myspack_base_dir=`dirname $myscript`
