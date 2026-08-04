@@ -1,2 +1,4 @@
 spack-build
 spack-mirror
+*.pvsc
+*.log
