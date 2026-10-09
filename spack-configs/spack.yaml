@@ -18,7 +18,7 @@ spack:
   config:
     connect_timeout: 100
     build_stage:
-      - $spack/../spack-build
+      - /tmp/kmorel/spack-build
   include:
     - $spack/../spack-configs/e4s-configs/frontier/rocm-6.2.4
     - $spack/../spack-configs/e4s-configs/frontier/cray-python/3.11.7

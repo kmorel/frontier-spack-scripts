@@ -38,5 +38,12 @@ fi
 
 spack env activate $myspack_config_name
 
+# Make sure build directory is configured.
+mybuild_dir=$myspack_base_dir/spack-build
+if [ \! -d $mybuild_dir -a \! -L $mybuild_dir ] ; then
+  ln -s `spack location --stages` $mybuild_dir
+fi
+unset mybuild_dir
+
 unset myspack_base_dir
 unset myspack_config_name
