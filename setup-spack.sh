@@ -29,7 +29,7 @@ if spack env activate $myspack_config_name ; then
 else
   # The configuration in SPACK_USER_CONFIG_PATH sets up a mirror. Loading files
   # from a mirror will fail if you don't build your own keys. Build them now.
-  spack buildcache keys --install --trust
+  spack buildcache keys --install --trust --yes-to-all
 
   myspack_config_file=$myspack_base_dir/spack-configs/spack.yaml
   spack env create $myspack_config_name $myspack_config_file

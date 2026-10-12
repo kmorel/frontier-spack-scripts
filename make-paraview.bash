@@ -2,6 +2,8 @@
 
 set -e
 
+module purge
+
 pv_version=6.1.1
 
 scriptdir=$(dirname $(realpath $0))
