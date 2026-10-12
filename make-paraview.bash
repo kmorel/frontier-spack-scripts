@@ -1,50 +1,10 @@
 #!/bin/bash
-#SBATCH -A CSC143
-#SBATCH -J pv-compile
-#SBATCH -o %x-%j.log
-#SBATCH -N 1
-#SBATCH -t 02:00:00
-#SBATCH -p batch
-#SBATCH -q normal
-#SBATCH --threads-per-core=1
-#SBATCH --mail-user=morelandkd@ornl.gov
-#SBATCH --mail-type=ALL
 
 set -e
 
 pv_version=6.1.1
-use_queue=false
 
-usage() {
-  echo "Usage: $0 [-q|--queue]"
-}
-
-while [ $# -gt 0 ] ; do
-  case "$1" in
-    -q|--queue)
-      use_queue=true
-      ;;
-    -h|--help)
-      usage
-      exit 0
-      ;;
-    *)
-      echo "Unknown argument: $1" >&2
-      usage >&2
-      exit 1
-      ;;
-  esac
-  shift
-done
-
-if [ -n "$SLURM_JOB_ID" ] ; then
-  echo "Running in batch job."
-  in_batch=true
-  scriptdir=${SLURM_SUBMIT_DIR}
-else
-  in_batch=false
-  scriptdir=$(dirname $(realpath $0))
-fi
+scriptdir=$(dirname $(realpath $0))
 
 cd ${scriptdir}
 
@@ -58,27 +18,10 @@ spack add \
   ^mgard@git.master=develop+rocm~openmp amdgpu_target=gfx90a \
   ^adios2@master+rocm+mgard+campaign+encryption amdgpu_target=gfx90a
 
-mirrordir=${scriptdir}/spack-mirror
 spack concretize
-if [ "$in_batch" = false ] ; then
-  spack mirror create -d ${mirrordir} -a
-fi
 
-if [ "$use_queue" = true ] ; then
-  echo "Queuing build job"
-  sbatch $0
-  exit 0
-fi
-
-spack mirror add local file://${mirrordir}
 # spack install --keep-stage
-if [ "$in_batch" = true ] ; then
-  echo "Running spack install on compute node."
-  srun -n 1 -c 56 spack install
-else
-  echo "Running spack install locally."
-  spack install
-fi
+spack install
 
 # ParaView indirectly depends on lua, and this overrides the lua
 # that srun uses. srun needs the luaposix library, so load that,
