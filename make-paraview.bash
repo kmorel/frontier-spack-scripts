@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "Building on `hostname`"
+
 set -e
 
 module purge
