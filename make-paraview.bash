@@ -14,16 +14,24 @@ cd ${scriptdir}
 
 . $scriptdir/setup-spack.sh
 
+
+if spack env activate paraview 2> /dev/null ; then
+  :
+else
+  echo "Creating Spack environment 'paraview'."
+  spack env create paraview
+  spack env activate paraview
+fi
+
 spack add \
   paraview@$pv_version+raytracing~x~qt+python+mpi+adios2+fides+visitbridge+rocm amdgpu_target=gfx90a \
-  ^ospray~volumes \
-  ^hwloc~gl \
-  ^viskores~openmp \
+  ^viskores+tbb \
   ^mgard@git.master=develop+rocm~openmp amdgpu_target=gfx90a \
   ^adios2@master+rocm+mgard+campaign+encryption amdgpu_target=gfx90a
 
 spack concretize
 
+echo "Building/installing ParaView"
 # spack install --keep-stage
 spack install
 
@@ -34,6 +42,8 @@ spack install
 # luarocks install luaposix
 
 # Make a custom server configuration that points to this build.
+
+echo "Making custom server configuration that points to this build"
 
 # This works best if this build directory has the date in it.
 build_name=frontier-$(basename $scriptdir)-$pv_version
@@ -52,3 +62,5 @@ pvsc_file_ge=${scriptdir}/${build_name}-ge-linux.pvsc
 cp -f ${pvsc_file} ${pvsc_file_ge}
 sed -i "s/${build_name}/${build_name}-ge-linux/" ${pvsc_file_ge}
 sed -i "s/frontier.olcf.ornl.gov/10.75.33.123/" ${pvsc_file_ge}
+
+echo "Done!"

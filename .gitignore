@@ -1,4 +1,6 @@
 spack-build
+spack-install
 spack-mirror
+spack-configs/repos.yaml
 *.pvsc
 *.log
