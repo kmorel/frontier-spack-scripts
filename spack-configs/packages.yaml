@@ -1,0 +1,27 @@
+packages:
+  # Limitations for compiling on this system
+  viskores:
+    require:
+    - ~openmp
+  mgard:
+    require:
+    - ~mdr
+  ospray:
+    require:
+    - ~volumes
+  hwloc:
+    require:
+    - ~gl
+
+  # Extra system packages we can use to save time
+  rust:
+    buildable: false
+    externals:
+    - spec: rust@1.76.0
+      prefix: /sw/frontier/spack-envs/tmp/opt/cray-sles15-zen3/gcc-7.5.0/rust-1.76.0-m7ggpt3uhjmpyeasip6ydi6iuqawl7s3
+      modules:
+      - Core/24.00
+      - rust/1.76.0
+      extra_attributes:
+        compilers:
+          rust: rustc

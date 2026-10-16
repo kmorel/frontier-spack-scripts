@@ -1,0 +1,6 @@
+config:
+  connect_timeout: 100
+  build_stage:
+    - /tmp/kmorel/spack-build
+  install_tree:
+    root: $spack/../spack-install
