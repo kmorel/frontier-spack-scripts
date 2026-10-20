@@ -31,6 +31,12 @@ spack add \
 
 spack concretize
 
+echo "Setting up git-lfs (required for Fides checkout)"
+spack add git git-lfs
+spack install git git-lfs
+spack load git git-lfs
+git lfs install
+
 echo "Building/installing ParaView"
 # spack install --keep-stage
 spack install
