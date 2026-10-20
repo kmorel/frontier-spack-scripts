@@ -12,6 +12,9 @@ packages:
   hwloc:
     require:
     - ~gl
+  glib:
+    require:
+    - "%c,cxx=gcc@14.2.0"
 
   # Extra system packages we can use to save time
   rust:
